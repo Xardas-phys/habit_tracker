@@ -8,7 +8,7 @@ body:
     attributes:
       label: "User Story"
       description: "Fill in your user story using the format: As a [user role], I want [feature/goal], so that [reason]."
-      default: |
+      placeholder: |
         **As a [user role], I want [feature/goal], so that [reason].**
         
         _Replace placeholders with actual content._
