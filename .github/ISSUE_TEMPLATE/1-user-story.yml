@@ -3,7 +3,7 @@ description: "Use this template to capture a new user story"
 title: "User Story: [Title]"
 labels: ["user story"]
 body:
-  - type: markdown
+  - type: input
     attributes:
       value: |
         **As a [user role], I want [feature/goal], so that [reason].**
