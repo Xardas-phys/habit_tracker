@@ -1,16 +1,47 @@
-# User Story Template
-**As a [role],**
-**I want [an action or feature],**
-**So that [a reason or benefit].**
+name: "User Story"
+description: "Use this template to capture a new user story"
+title: "User Story: [Title]"
+labels: ["user story"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **As a [user role], I want [feature/goal], so that [reason].**
+        
+        _Replace placeholders with actual content._
+        
+  - type: checkboxes
+    id: acceptance_criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: "List the acceptance criteria for this story."
+      options:
+        - label: "[Criteria 1]"
+        - label: "[Criteria 2]"
+        - label: "[Criteria 3]"
+    validations:
+      required: true
 
-**Acceptance Criteria:**
-- [ ] Criteria 1: Describe the first acceptance criterion here.
-- [ ] Criteria 2: Describe the second acceptance criterion here.
-- [ ] Criteria 3: Describe additional criteria as needed.
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Priority"
+      description: "Select the priority level."
+      options:
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true
 
-**Definition of Done:**
-- [ ] All acceptance criteria are met.
-- [ ] Code is reviewed and approved.
-- [ ] Necessary tests are written and pass.
-- [ ] Documentation is updated, if applicable.
-- [ ] Feature is deployed to the [environment name].
+  - type: input
+    id: story_points
+    attributes:
+      label: "Story Points"
+      description: "Estimated effort in points."
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Notes"
+      description: "Add any additional information or edge cases."
