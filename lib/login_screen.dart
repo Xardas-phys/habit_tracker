@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'register_screen.dart';
 import 'habit_tracker_screen.dart';
@@ -18,21 +20,37 @@ class _LoginScreenState extends State<LoginScreen> {
   final String defaultUsername = 'testuser';
   final String defaultPassword = 'password123';
 
-  void _login() {
-      // The login logic goes here
-      print("login logic here");
+  void _login() async {
+    final username = _usernameController.text;
+    final password = _passwordController.text;
 
-      final username = _usernameController.text;
-      final password = _passwordController.text;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      if (username == defaultUsername && password == defaultPassword) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HabitTrackerScreen(username: username),
-          ),
-        );
-      }
+    // Check against default credentials
+    if (username == defaultUsername && password == defaultPassword) {
+      await prefs.setString('name', 'Test User');
+      await prefs.setString('username', 'testuser');
+      await prefs.setDouble('age', 25);
+      await prefs.setString('country', 'United States');
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HabitTrackerScreen(username: username),
+        ),
+      );
+    } else {
+      //empty out shared preferences
+      await prefs.clear();
+      Fluttertoast.showToast(
+        msg: "The username or password was incorrect",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
   }
 
   @override
